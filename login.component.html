@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.component.css">
+</head>
+<body>
+    <div class="container">
+  <h2>Login</h2>
+  <form (ngSubmit)="submitForm()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name" required>
+      <div *ngIf="nameError" class="error">Name is required.</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" required>
+      <div *ngIf="emailError" class="error">Email is required.</div>
+      <div *ngIf="duplicateEmailError" class="error">Email is already taken.</div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" class="form-control" id="phone" name="phone" [(ngModel)]="user.phone" required>
+      <div *ngIf="phoneError" class="error">Phone number is required.</div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || duplicateEmailError">Login</button>
+  </form>
+</div>
+
+</body>
+</html>
